@@ -1,0 +1,143 @@
+.movie-details-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:50px;
+    background:#0B0F19;
+}
+
+.movie-details-card{
+    width:100%;
+    max-width:900px;
+    display:flex;
+    gap:40px;
+    padding:30px;
+    background:#1F1F1F;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.details-poster{
+    width:280px;
+    height:auto;
+    object-fit:cover;
+    border-radius:10px;
+    flex-shrink:0;
+}
+
+.details-section{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    color:#fff;
+}
+
+.details-section h1{
+    margin-bottom:15px;
+    font-size:36px;
+}
+
+.details-section h3{
+    margin-bottom:15px;
+    color:#FFC857;
+    font-size:22px;
+}
+
+.details-section p{
+    margin-bottom:25px;
+    color:#D0D5DD;
+    font-size:17px;
+    line-height:1.7;
+}
+
+.book-btn{
+    width:fit-content;
+    padding:12px 28px;
+    border:none;
+    border-radius:8px;
+    background:#E50914;
+    color:#fff;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.book-btn:hover{
+    background:#b20710;
+}
+
+/* Tablet */
+@media (max-width:768px){
+    .movie-details-container{
+        padding:30px;
+    }
+
+    .movie-details-card{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:30px;
+        padding:25px;
+    }
+
+    .details-poster{
+        width:250px;
+    }
+
+    .details-section h1{
+        font-size:30px;
+    }
+
+    .details-section h3{
+        font-size:20px;
+    }
+
+    .details-section p{
+        font-size:16px;
+    }
+
+    .book-btn{
+        width:100%;
+        text-align:center;
+    }
+}
+
+/* Mobile */
+@media (max-width:480px){
+    .movie-details-container{
+        padding:20px;
+    }
+
+    .movie-details-card{
+        padding:20px;
+        gap:20px;
+        border-radius:12px;
+    }
+
+    .details-poster{
+        width:180px;
+    }
+
+    .details-section h1{
+        font-size:24px;
+    }
+
+    .details-section h3{
+        font-size:18px;
+    }
+
+    .details-section p{
+        font-size:15px;
+        line-height:1.6;
+    }
+
+    .book-btn{
+        width:100%;
+        padding:13px;
+        font-size:15px;
+    }
+}

@@ -1,0 +1,274 @@
+.payment-page {
+    min-height: 100vh;
+    background: #0B0F19;
+    padding: 18px 3%;
+}
+
+.payment-container {
+    max-width: 1180px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 18px;
+    align-items: start;
+}
+
+.payment-left h2,
+.booking-summary h2 {
+    color: #fff;
+    margin-bottom: 12px;
+    font-size: 22px;
+}
+
+.method-card,
+.dropdown,
+.booking-summary {
+    background: #181D27;
+    border: 1px solid #2D3548;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.method-header,
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    font-size: 15px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.method-header:hover,
+.dropdown-header:hover {
+    background: #232C3F;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 10px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    gap: 8px;
+    font-size: 13px;
+    border: 2px solid #2D3548;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: .3s;
+    background: #111722;
+}
+
+.option:hover {
+    border-color: #FFC857;
+}
+
+.option.active {
+    border-color: #E50914;
+    background: #252F45;
+}
+
+.payment-logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.dropdown-content {
+    border-top: 1px solid #2D3548;
+    padding: 10px 12px;
+}
+
+.promo-box {
+    display: flex;
+    margin-bottom: 8px;
+    gap: 6px;
+}
+
+.promo-box input {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 13px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+}
+
+.promo-box button {
+   padding:4px 10px;
+font-size:11px;
+border-radius:12px;
+    border: none;
+    background: #E50914;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.promo-box button:hover {
+    background: #C40812;
+}
+
+.coupon-list {
+    display: flex;
+    flex-wrap: wrap;
+     gap:6px;
+    margin-bottom:8px;
+}
+.coupon {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: #252F45;
+    color: #FFC857;
+    cursor: pointer;
+    transition: .3s;
+    font-size: 14px;
+}
+
+.coupon:hover {
+    background: #FFC857;
+    color: #000;
+}
+
+.promo-message {
+    color: #4ADE80;
+    font-weight: 600;
+}
+
+.offer-card {
+    background: #111722;
+    border: 1px solid #2D3548;
+    border-radius: 8px;
+    padding: 15px;
+    color: #fff;
+    margin-bottom: 12px;
+    transition: .3s;
+}
+
+.offer-card:hover {
+    border-color: #FFC857;
+}
+
+.booking-summary {
+    padding: 25px;
+    position: sticky;
+    top: 30px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    color: #ddd;
+}
+
+.summary-item span:last-child {
+    font-weight: 600;
+}
+
+.discount span:last-child {
+    color: #4ADE80;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    color: #FFC857;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    background: #E50914;
+    color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.pay-btn:hover:not(:disabled) {
+    background: #C40812;
+}
+
+.pay-btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #2D3548;
+    margin: 18px 0;
+}
+
+@media(max-width:992px) {
+    .payment-container {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-summary {
+        position: static;
+    }
+}
+
+@media(max-width:768px) {
+    .payment-page {
+        padding: 20px;
+    }
+
+    .options {
+        grid-template-columns: 1fr;
+    }
+
+    .promo-box {
+        flex-direction: column;
+    }
+
+    .summary-total {
+        font-size: 18px;
+    }
+
+    .pay-btn {
+        font-size: 16px;
+    }
+}
+
+@media(max-width:480px) {
+
+    .method-header,
+    .dropdown-header {
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    .booking-summary {
+        padding: 18px;
+    }
+
+    .payment-logo {
+        width: 36px;
+        height: 36px;
+    }
+
+}

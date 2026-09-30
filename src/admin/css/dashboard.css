@@ -1,0 +1,284 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+.dashboard-container{
+    display:flex;
+    min-height:100vh;
+    background:#0B0F19;
+}
+
+.dashboard-content{
+    flex:1;
+    margin-left:260px;
+    min-height:100vh;
+    padding:35px;
+    background:#0B0F19;
+    overflow-y:auto;
+}
+
+
+/* =========================
+   DASHBOARD HEADER
+========================= */
+
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.dashboard-title{
+    color:#FFC857;
+    font-size:36px;
+    font-weight:700;
+    margin:0;
+}
+
+.dashboard-subtitle{
+    color:#9CA3AF;
+    font-size:15px;
+    margin-top:8px;
+}
+
+
+/* =========================
+   STATS GRID
+========================= */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+
+/* =========================
+   STAT CARD
+========================= */
+
+.stat-card{
+    background:#1A2238;
+    border:1px solid #2E3A59;
+    border-radius:14px;
+    padding:25px;
+    min-height:150px;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+    transition:all .3s ease;
+}
+
+.stat-card:hover{
+    transform:translateY(-5px);
+    border-color:#FFC857;
+    box-shadow:0 12px 25px rgba(0,0,0,.35);
+}
+
+.stat-card-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.stat-card h3{
+    color:#9CA3AF;
+    font-size:16px;
+    font-weight:500;
+    margin-bottom:12px;
+}
+
+.stat-card h2{
+    color:#FFFFFF;
+    font-size:36px;
+    font-weight:700;
+    margin:0;
+}
+
+
+/* =========================
+   STAT ICON
+========================= */
+
+.stat-icon{
+    width:55px;
+    height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#111827;
+    border-radius:12px;
+    font-size:28px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.dashboard-header .btn{
+    border:none;
+    outline:none;
+    cursor:pointer;
+    padding:11px 20px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:600;
+    background:#E50914;
+    color:#FFFFFF;
+    transition:.3s;
+}
+
+.dashboard-header .btn:hover{
+    background:#B20710;
+    transform:translateY(-2px);
+}
+
+
+/* =========================
+   TABLE / RECENT BOOKINGS
+   (for future dashboard use)
+========================= */
+
+.recent-bookings{
+    background:#1A2238;
+    border:1px solid #2E3A59;
+    border-radius:14px;
+    padding:25px;
+    margin-top:35px;
+    overflow-x:auto;
+}
+
+.recent-bookings h2{
+    color:#FFC857;
+    margin-bottom:20px;
+    font-size:22px;
+}
+
+.recent-bookings table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.recent-bookings th{
+    background:#111827;
+    color:#FFC857;
+    padding:15px;
+    text-align:left;
+}
+
+.recent-bookings td{
+    padding:15px;
+    border-bottom:1px solid #374151;
+    color:#D1D5DB;
+}
+
+.recent-bookings tr:hover{
+    background:#243047;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:1100px){
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+
+/* =========================
+   992px
+========================= */
+
+@media(max-width:992px){
+
+    .dashboard-content{
+        margin-left:220px;
+        padding:25px;
+    }
+
+    .dashboard-title{
+        font-size:32px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .dashboard-content{
+        margin-left:80px;
+        padding:20px;
+    }
+
+    .dashboard-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .dashboard-title{
+        font-size:28px;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+
+    .stat-card{
+        padding:20px;
+    }
+
+    .stat-card h2{
+        font-size:32px;
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media(max-width:480px){
+
+    .dashboard-content{
+        margin-left:0;
+        padding:15px;
+    }
+
+    .dashboard-title{
+        font-size:25px;
+    }
+
+    .dashboard-subtitle{
+        font-size:13px;
+    }
+
+    .stat-card{
+        min-height:130px;
+    }
+
+    .stat-card h2{
+        font-size:30px;
+    }
+
+    .stat-icon{
+        width:48px;
+        height:48px;
+        font-size:24px;
+    }
+
+}

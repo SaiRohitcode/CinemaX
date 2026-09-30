@@ -1,0 +1,280 @@
+.ticket-page{
+    min-height:100vh;
+    padding:40px 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:
+        radial-gradient(circle at top,#1B2336 0%,#0B0F19 55%,#06080F 100%);
+}
+
+.ticket-card{
+    position:relative;
+    width:900px;
+    max-width:100%;
+    background:#fff;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 20px 45px rgba(0,0,0,.45);
+    animation:ticketFade .6s ease;
+}
+
+.ticket-card::before,
+.ticket-card::after{
+    content:"";
+    position:absolute;
+    width:34px;
+    height:34px;
+    background:#0B0F19;
+    border-radius:50%;
+    top:52%;
+    transform:translateY(-50%);
+    z-index:5;
+}
+
+.ticket-card::before{
+    left:-17px;
+}
+
+.ticket-card::after{
+    right:-17px;
+}
+
+.ticket-header{
+    position:relative;
+    overflow:hidden;
+    padding:28px;
+    text-align:center;
+    color:#fff;
+    background:linear-gradient(135deg,#E50914,#FF4B5C);
+}
+
+.ticket-header::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:rgba(255,255,255,.08);
+    border-radius:50%;
+    top:-80px;
+    right:-60px;
+}
+
+.ticket-header h1{
+    margin:0;
+    font-size:40px;
+    letter-spacing:1px;
+}
+
+.ticket-header p{
+    margin-top:8px;
+    font-size:18px;
+    opacity:.95;
+}
+
+.ticket-content{
+    display:flex;
+    gap:35px;
+    padding:35px;
+}
+
+.ticket-poster{
+    width:220px;
+    height:320px;
+    object-fit:cover;
+    border-radius:14px;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+    flex-shrink:0;
+}
+
+.ticket-info{
+    flex:1;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px 35px;
+}
+
+.ticket-row{
+    padding:14px 16px;
+    background:#F7F8FB;
+    border-radius:12px;
+    border-left:4px solid #E50914;
+    transition:.3s;
+}
+
+.ticket-row:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+.ticket-row span{
+    display:block;
+    margin-bottom:6px;
+    color:#777;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+.ticket-row strong{
+    color:#111;
+    font-size:18px;
+}
+
+.ticket-qr{
+    position:relative;
+    padding:30px;
+    text-align:center;
+    border-top:2px dashed #D8D8D8;
+}
+
+.ticket-qr::before{
+    content:"SCAN TO ENTER";
+    position:absolute;
+    top:-12px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#fff;
+    padding:0 12px;
+    color:#888;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+.ticket-qr img{
+    padding:10px;
+    background:#fff;
+    border:1px solid #E5E5E5;
+    border-radius:12px;
+}
+
+.ticket-qr p{
+    margin-top:18px;
+    color:#555;
+    font-size:15px;
+    line-height:1.6;
+}
+
+.ticket-home-btn{
+    margin-top:30px;
+    padding:15px 42px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#E50914,#FF3B47);
+    color:#fff;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 10px 20px rgba(229,9,20,.35);
+}
+
+.ticket-home-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 28px rgba(229,9,20,.45);
+}
+
+@keyframes ticketFade{
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* Tablet */
+@media(max-width:768px){
+
+    .ticket-content{
+        flex-direction:column;
+        align-items:center;
+        padding:28px;
+    }
+
+    .ticket-info{
+        width:100%;
+        grid-template-columns:1fr;
+    }
+
+    .ticket-poster{
+        width:220px;
+        height:320px;
+    }
+
+    .ticket-header h1{
+        font-size:34px;
+    }
+
+    .ticket-header p{
+        font-size:16px;
+    }
+}
+
+/* Mobile */
+@media(max-width:480px){
+
+    .ticket-page{
+        padding:20px 12px;
+    }
+
+    .ticket-card{
+        border-radius:16px;
+    }
+
+    .ticket-card::before,
+    .ticket-card::after{
+        width:24px;
+        height:24px;
+        left:-12px;
+    }
+
+    .ticket-card::after{
+        left:auto;
+        right:-12px;
+    }
+
+    .ticket-header{
+        padding:22px 18px;
+    }
+
+    .ticket-header h1{
+        font-size:28px;
+    }
+
+    .ticket-header p{
+        font-size:14px;
+    }
+
+    .ticket-content{
+        padding:18px;
+        gap:22px;
+    }
+
+    .ticket-poster{
+        width:170px;
+        height:245px;
+    }
+
+    .ticket-row{
+        padding:12px;
+    }
+
+    .ticket-row strong{
+        font-size:16px;
+    }
+
+    .ticket-qr{
+        padding:20px;
+    }
+
+    .ticket-home-btn{
+        width:100%;
+        margin-top:20px;
+        padding:14px;
+        font-size:15px;
+    }
+}

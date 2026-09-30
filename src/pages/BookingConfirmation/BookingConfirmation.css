@@ -1,0 +1,161 @@
+.confirmation-page{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+    background:#ECEFF3;
+}
+
+.ticket{
+    width:420px;
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+
+.ticket-header{
+    padding:30px;
+    background:#E50914;
+    color:#fff;
+    text-align:center;
+}
+
+.ticket-header h1{
+    margin-bottom:8px;
+}
+
+.ticket-body{
+    padding:30px;
+}
+
+.ticket-row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:18px;
+    padding-bottom:10px;
+    border-bottom:1px dashed #ddd;
+}
+
+.ticket-row span{
+    color:#666;
+}
+
+.ticket-row strong{
+    color:#111;
+}
+
+.qr-section{
+    padding:25px;
+    color:#111;
+    text-align:center;
+    border-top:2px dashed #ddd;
+}
+
+.qr-box{
+    width:170px;
+    height:170px;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:10px;
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:10px;
+}
+
+.home-btn{
+    margin-top:30px;
+    padding:15px 35px;
+    background:#E50914;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.home-btn:hover{
+    background:#c40812;
+}
+
+/* Tablet */
+@media (max-width:768px){
+    .confirmation-page{
+        padding:30px;
+    }
+
+    .ticket{
+        width:100%;
+        max-width:420px;
+    }
+
+    .ticket-header{
+        padding:25px;
+    }
+
+    .ticket-body{
+        padding:25px;
+    }
+
+    .ticket-row{
+        font-size:15px;
+    }
+
+    .home-btn{
+        width:100%;
+        padding:14px;
+        font-size:16px;
+    }
+}
+
+/* Mobile */
+@media (max-width:480px){
+    .confirmation-page{
+        padding:20px;
+    }
+
+    .ticket{
+        width:100%;
+        border-radius:15px;
+    }
+
+    .ticket-header{
+        padding:20px;
+    }
+
+    .ticket-header h1{
+        font-size:24px;
+    }
+
+    .ticket-body{
+        padding:20px;
+    }
+
+    .ticket-row{
+        flex-direction:column;
+        gap:5px;
+        align-items:flex-start;
+        font-size:14px;
+    }
+
+    .qr-section{
+        padding:20px;
+    }
+
+    .qr-box{
+        width:140px;
+        height:140px;
+    }
+
+    .home-btn{
+        width:100%;
+        margin-top:20px;
+        padding:13px;
+        font-size:15px;
+    }
+}

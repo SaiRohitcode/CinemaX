@@ -1,0 +1,105 @@
+.bookings-page{
+    min-height:100vh;
+    padding:35px 70px;
+    background:#0B0F19;
+}
+
+.bookings-page h1{
+    text-align:center;
+    color:#fff;
+    margin-bottom:35px;
+    font-size:36px;
+}
+
+.booking-card{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    background:#181D27;
+    border-radius:15px;
+    padding:18px 22px;
+    margin-bottom:22px;
+    box-shadow:0 6px 20px rgba(0,0,0,.35);
+    transition:.3s;
+}
+
+.booking-card:hover{
+    transform:translateY(-4px);
+}
+
+.booking-poster{
+    width:95px;
+    height:140px;
+    object-fit:cover;
+    border-radius:10px;
+    flex-shrink:0;
+}
+
+.movie-details{
+    flex:1;
+}
+
+.movie-details h2{
+    color:#FFC857;
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.movie-details p{
+    color:#ddd;
+    margin:5px 0;
+    font-size:15px;
+}
+
+.movie-details strong{
+    color:#fff;
+}
+
+.ticket-btn{
+    padding:11px 22px;
+    border:none;
+    border-radius:8px;
+    background:#E50914;
+    color:#fff;
+    font-size:15px;
+    cursor:pointer;
+    transition:.3s;
+    white-space:nowrap;
+}
+
+.ticket-btn:hover{
+    background:#ff2f3d;
+}
+
+.empty-bookings{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:60vh;
+    color:#888;
+    font-size:22px;
+}
+
+@media(max-width:768px){
+
+    .bookings-page{
+        padding:20px;
+    }
+
+    .booking-card{
+        flex-direction:column;
+        text-align:center;
+        padding:20px;
+    }
+
+    .booking-poster{
+        width:120px;
+        height:175px;
+    }
+
+    .ticket-btn{
+        width:100%;
+        margin-top:15px;
+    }
+
+}

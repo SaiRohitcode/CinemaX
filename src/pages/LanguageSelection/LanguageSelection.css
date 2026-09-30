@@ -1,0 +1,168 @@
+.language-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:50px;
+    background:#0B0F19;
+}
+
+.language-card{
+    width:100%;
+    max-width:500px;
+    padding:40px;
+    background:#141A29;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.45);
+}
+
+.language-poster{
+    width:180px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.5);
+}
+
+.language-card h1{
+    margin-bottom:10px;
+    color:#FFC857;
+    font-size:32px;
+}
+
+.language-card h3{
+    margin-bottom:30px;
+    color:#fff;
+    font-weight:500;
+}
+
+.language-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin-bottom:35px;
+}
+
+.language-btn{
+    padding:15px;
+    border:2px solid #2D3648;
+    border-radius:12px;
+    background:#1C2333;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.language-btn:hover{
+    border-color:#FFC857;
+    transform:translateY(-2px);
+}
+
+.language-btn.active{
+    background:#E50914;
+    border-color:#E50914;
+    color:#fff;
+}
+
+.continue-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    background:#E50914;
+    color:#fff;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.continue-btn:hover:not(:disabled){
+    background:#b40710;
+}
+
+.continue-btn:disabled{
+    background:#555;
+    cursor:not-allowed;
+}
+
+/* Tablet */
+@media (max-width:768px){
+    .language-page{
+        padding:30px;
+    }
+
+    .language-card{
+        padding:30px;
+    }
+
+    .language-poster{
+        width:160px;
+    }
+
+    .language-card h1{
+        font-size:28px;
+    }
+
+    .language-card h3{
+        font-size:18px;
+    }
+
+    .language-list{
+        gap:15px;
+    }
+
+    .language-btn{
+        font-size:15px;
+        padding:14px;
+    }
+
+    .continue-btn{
+        font-size:16px;
+        padding:15px;
+    }
+}
+
+/* Mobile */
+@media (max-width:480px){
+    .language-page{
+        padding:20px;
+    }
+
+    .language-card{
+        padding:20px;
+        border-radius:15px;
+    }
+
+    .language-poster{
+        width:140px;
+        margin-bottom:20px;
+    }
+
+    .language-card h1{
+        font-size:24px;
+    }
+
+    .language-card h3{
+        font-size:16px;
+        margin-bottom:25px;
+    }
+
+    .language-list{
+        grid-template-columns:1fr;
+        gap:12px;
+        margin-bottom:25px;
+    }
+
+    .language-btn{
+        font-size:14px;
+        padding:13px;
+    }
+
+    .continue-btn{
+        padding:14px;
+        font-size:15px;
+    }
+}

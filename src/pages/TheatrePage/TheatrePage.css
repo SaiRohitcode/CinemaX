@@ -1,0 +1,146 @@
+.theatre-page{
+    min-height:100vh;
+    padding:50px 80px;
+    background:#0B0F19;
+}
+
+.theatre-page-title{
+    margin-bottom:45px;
+    color:#fff;
+    font-size:40px;
+    text-align:center;
+}
+
+.no-theatre{
+    margin-top:80px;
+    color:#FFC857;
+    font-size:28px;
+    text-align:center;
+    line-height:1.5;
+}
+
+.theatre-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
+
+.theatre-card{
+    padding:25px;
+    background:#181D27;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+    transition:.3s;
+}
+
+.theatre-card:hover{
+    transform:translateY(-5px);
+}
+
+.theatre-card h2{
+    margin-bottom:15px;
+    color:#fff;
+    font-size:28px;
+}
+
+.theatre-card p{
+    margin-bottom:12px;
+    color:#FFC857;
+    font-size:18px;
+    font-weight:600;
+}
+
+.theatre-card ul{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+.theatre-card li{
+    padding:12px 0;
+    border-bottom:1px solid #2E3547;
+    color:#DDD;
+    font-size:17px;
+    line-height:1.6;
+}
+
+.theatre-card li:last-child{
+    border-bottom:none;
+}
+
+/* Tablet */
+@media (max-width:768px){
+    .theatre-page{
+        padding:35px 30px;
+    }
+
+    .theatre-page-title{
+        margin-bottom:35px;
+        font-size:32px;
+    }
+
+    .theatre-grid{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+    .theatre-card{
+        padding:22px;
+    }
+
+    .theatre-card h2{
+        font-size:24px;
+    }
+
+    .theatre-card p{
+        font-size:17px;
+    }
+
+    .theatre-card li{
+        font-size:16px;
+    }
+
+    .no-theatre{
+        margin-top:60px;
+        font-size:24px;
+    }
+}
+
+/* Mobile */
+@media (max-width:480px){
+    .theatre-page{
+        padding:20px;
+    }
+
+    .theatre-page-title{
+        margin-bottom:25px;
+        font-size:26px;
+    }
+
+    .theatre-grid{
+        gap:20px;
+    }
+
+    .theatre-card{
+        padding:18px;
+        border-radius:12px;
+    }
+
+    .theatre-card h2{
+        font-size:20px;
+    }
+
+    .theatre-card p{
+        font-size:15px;
+    }
+
+    .theatre-card li{
+        padding:10px 0;
+        font-size:14px;
+    }
+
+    .no-theatre{
+        margin-top:50px;
+        font-size:20px;
+    }
+}

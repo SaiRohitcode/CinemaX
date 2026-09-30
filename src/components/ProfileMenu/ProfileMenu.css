@@ -1,0 +1,169 @@
+.profile-popup{
+    position:absolute;
+    top:55px;
+    right:0;
+    width:320px;
+    background:#181D27;
+    border:1px solid #2E3547;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.45);
+    overflow:hidden;
+    z-index:1000;
+}
+
+.profile-header{
+    display:flex;
+    align-items:center;
+    padding:18px;
+}
+
+.profile-avatar{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#E50914;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.profile-details{
+    flex:1;
+    margin-left:15px;
+}
+
+.profile-name{
+    color:#fff;
+    font-size:17px;
+    font-weight:600;
+}
+
+.profile-email{
+    color:#B0B8C5;
+    font-size:13px;
+    margin-top:4px;
+    word-break:break-word;
+}
+
+.edit-profile{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    color:#FFC857;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+}
+
+.edit-profile:hover{
+    color:#fff;
+}
+
+.profile-divider{
+    border-top:1px solid #2E3547;
+}
+
+.profile-item{
+    display:block;
+    padding:15px 20px;
+    color:#fff;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.profile-item:hover{
+    background:#E50914;
+}
+
+.logout-btn{
+    width:100%;
+    padding:15px 20px;
+    border:none;
+    border-top:1px solid #2E3547;
+    background:none;
+    color:#fff;
+    cursor:pointer;
+    text-align:left;
+    font-size:15px;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#E50914;
+}
+
+/* Tablet */
+@media (max-width:768px){
+    .profile-popup{
+        width:280px;
+    }
+
+    .profile-header{
+        padding:16px;
+    }
+
+    .profile-avatar{
+        width:50px;
+        height:50px;
+        font-size:20px;
+    }
+
+    .profile-name{
+        font-size:16px;
+    }
+
+    .profile-email{
+        font-size:12px;
+    }
+
+    .profile-item,
+    .logout-btn{
+        padding:14px 18px;
+        font-size:14px;
+    }
+}
+
+/* Mobile */
+@media (max-width:480px){
+    .profile-popup{
+        width:95vw;
+        right:50%;
+        transform:translateX(50%);
+        top:50px;
+    }
+
+    .profile-header{
+        padding:15px;
+    }
+
+    .profile-avatar{
+        width:45px;
+        height:45px;
+        font-size:18px;
+    }
+
+    .profile-details{
+        margin-left:12px;
+    }
+
+    .profile-name{
+        font-size:15px;
+    }
+
+    .profile-email{
+        font-size:12px;
+    }
+
+    .edit-profile{
+        font-size:13px;
+    }
+
+    .profile-item,
+    .logout-btn{
+        padding:13px 15px;
+        font-size:14px;
+    }
+}

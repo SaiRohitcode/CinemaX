@@ -1,0 +1,163 @@
+.profile-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+    background:#0B0F19;
+}
+
+.profile-card{
+    width:100%;
+    max-width:700px;
+    padding:35px;
+    background:#181D27;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.avatar{
+    width:90px;
+    height:90px;
+    margin:0 auto 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    background:#E50914;
+    color:#fff;
+    font-size:36px;
+    font-weight:700;
+}
+
+.profile-card h2{
+    margin-bottom:35px;
+    color:#fff;
+    text-align:center;
+    font-size:32px;
+}
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.input-group label{
+    margin-bottom:8px;
+    color:#B0B8C5;
+    font-size:15px;
+    font-weight:500;
+}
+
+.input-group input,
+.input-group select{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    outline:none;
+    box-sizing:border-box;
+    background:#2E3547;
+    color:#fff;
+    font-size:15px;
+}
+
+.input-group input:focus,
+.input-group select:focus{
+    outline:2px solid #FFC857;
+}
+
+.save-btn{
+    width:100%;
+    margin-top:35px;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#E50914;
+    color:#fff;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.save-btn:hover{
+    background:#FF3B47;
+}
+
+/* Tablet */
+@media (max-width:768px){
+    .profile-page{
+        padding:30px;
+    }
+
+    .profile-card{
+        padding:30px;
+    }
+
+    .profile-card h2{
+        font-size:28px;
+        margin-bottom:30px;
+    }
+
+    .avatar{
+        width:80px;
+        height:80px;
+        font-size:32px;
+    }
+
+    .profile-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+
+    .save-btn{
+        font-size:16px;
+    }
+}
+
+/* Mobile */
+@media (max-width:480px){
+    .profile-page{
+        padding:20px;
+    }
+
+    .profile-card{
+        padding:20px;
+        border-radius:12px;
+    }
+
+    .profile-card h2{
+        font-size:24px;
+        margin-bottom:25px;
+    }
+
+    .avatar{
+        width:70px;
+        height:70px;
+        font-size:28px;
+        margin-bottom:18px;
+    }
+
+    .input-group label{
+        font-size:14px;
+    }
+
+    .input-group input,
+    .input-group select{
+        padding:11px;
+        font-size:14px;
+    }
+
+    .save-btn{
+        margin-top:25px;
+        padding:13px;
+        font-size:15px;
+    }
+}

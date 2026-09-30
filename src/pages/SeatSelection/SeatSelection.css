@@ -1,0 +1,343 @@
+.seat-selection-container{
+    min-height:100vh;
+    padding:110px 20px 180px;
+    background:#FFFFFF;
+    color:#FFFFFF;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.booking-details{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    min-height:80px;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    background:#1A1F2E;
+    border-bottom:1px solid #333;
+    z-index:1000;
+}
+
+.booking-details h2{
+    margin:0;
+    color:#FFC857;
+    font-size:28px;
+}
+
+.booking-details p{
+    margin:4px 0;
+    color:#CCC;
+    font-size:15px;
+}
+
+.theatre-screen{
+    width:min(900px,95%);
+    max-width:900px;
+    height:50px;
+    margin-bottom:40px;
+    background:#F5F5F5;
+    color:#333;
+    border-radius:100px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:16px;
+    font-weight:700;
+    box-shadow:0 8px 25px rgba(0,0,0,.18);
+    transform:perspective(350px) rotateX(-18deg);
+}
+
+.seat-section{
+    margin-bottom:18px;
+    width:max-content;
+    max-width:100%;
+}
+
+.seat-section-title{
+    margin-bottom:10px;
+    text-align:center;
+    color:#FFC857;
+    font-size:16px;
+    font-weight:600;
+}
+
+.seat-layout-row{
+    display:flex;
+    align-items:center;
+    width:max-content;
+    margin:0 auto 4px;
+}
+
+.seat-row-label{
+    width:25px;
+    flex-shrink:0;
+    text-align:center;
+    color:#333;
+    font-weight:600;
+    margin-right:8px;
+}
+
+.seat-row-grid{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:4px;
+    width:max-content;
+}
+
+.seat-box{
+    width:24px;
+    height:24px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:2px solid #1EA83C;
+    border-radius:5px 5px 2px 2px;
+    background:#C9F5DC;
+    color:#000;
+    font-size:clamp(5px,.8vw,8px);
+    cursor:pointer;
+    transition:.25s;
+    flex-shrink:0;
+}
+
+.seat-box:hover{
+    background:#FFC857;
+    border-color:#FFC857;
+    transform:scale(1.1);
+}
+
+.seat-aisle{
+    margin-right:20px;
+}
+
+.seat-aisle-space{
+    width:20px;
+    height:20px;
+    flex-shrink:0;
+}
+
+.seat-empty-space{
+    width:42px;
+    height:34px;
+    flex-shrink:0;
+    background:transparent;
+}
+
+.seat-selected{
+    background:#FFC857;
+    border-color:#FFC857;
+    color:#000;
+}
+
+.seat-booked{
+    background:#777;
+    border-color:#777;
+    color:#FFF;
+    cursor:not-allowed;
+}
+
+.seat-booked:hover{
+    background:#777;
+    transform:none;
+}
+
+.seat-booking-summary{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:12px 20px;
+    background:#FFFFFF;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 -5px 18px rgba(0,0,0,.2);
+    z-index:1000;
+}
+
+.selected-seat-info{
+    text-align:center;
+}
+
+.selected-seat-info h4{
+    margin:0 0 6px;
+    color:#333;
+    font-size:16px;
+}
+
+.selected-seat-info p{
+    margin:0;
+    max-width:700px;
+    color:#E50914;
+    font-size:15px;
+    font-weight:600;
+    word-break:break-word;
+}
+
+.seat-selection-legend{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.seat-legend-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#000;
+    font-size:14px;
+}
+
+.seat-legend-box{
+    width:18px;
+    height:18px;
+    border-radius:4px;
+}
+
+.seat-available{
+    background:#C9F5DC;
+    border:2px solid #1EA83C;
+}
+
+.seat-selected-color{
+    background:#FFC857;
+    border:2px solid #FFC857;
+}
+
+.seat-booked-color{
+    background:#777;
+    border:2px solid #B0B0B0;
+}
+
+.seat-proceed-btn{
+    width:260px;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#E50914;
+    color:#FFF;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.seat-proceed-btn:hover{
+    background:#B20710;
+}
+
+@media(max-width:768px){
+
+    .seat-selection-container{
+        padding:120px 15px 190px;
+    }
+
+    .booking-details{
+        padding:15px;
+        justify-content:center;
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .booking-details h2{
+        font-size:24px;
+    }
+
+    .booking-details p{
+        font-size:14px;
+    }
+
+    .theatre-screen{
+        width:95%;
+        height:45px;
+        font-size:15px;
+        margin-bottom:30px;
+    }
+
+    .seat-aisle{
+        margin-right:15px;
+    }
+
+    .seat-proceed-btn{
+        width:100%;
+        max-width:320px;
+    }
+}
+
+@media(max-width:480px){
+
+    .seat-selection-container{
+        padding:130px 10px 210px;
+        overflow-x:auto;
+    }
+
+    .booking-details{
+        padding:12px;
+    }
+
+    .booking-details h2{
+        font-size:20px;
+    }
+
+    .booking-details p{
+        font-size:13px;
+    }
+
+    .theatre-screen{
+        width:100%;
+        height:40px;
+        font-size:14px;
+        margin-bottom:25px;
+    }
+
+    .seat-layout-row{
+        width:max-content;
+    }
+
+    .seat-aisle{
+        margin-right:10px;
+    }
+
+    .seat-section-title{
+        font-size:14px;
+    }
+
+    .selected-seat-info h4{
+        font-size:15px;
+    }
+
+    .selected-seat-info p{
+        font-size:14px;
+    }
+
+    .seat-selection-legend{
+        gap:12px;
+    }
+
+    .seat-legend-item{
+        font-size:12px;
+    }
+
+    .seat-legend-box{
+        width:15px;
+        height:15px;
+    }
+
+    .seat-proceed-btn{
+        width:100%;
+        max-width:none;
+        padding:13px;
+        font-size:15px;
+    }
+}

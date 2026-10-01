@@ -1,5 +1,4 @@
 const express = require("express");
-
 const router = express.Router();
 
 const {
@@ -12,10 +11,7 @@ const {
 const authMiddleware = require("../middleware/authMiddleware");
 const adminMiddleware = require("../middleware/adminMiddleware");
 
-// =========================
 // USER ROUTES
-// =========================
-
 // Create Booking
 router.post(
     "/",
@@ -44,21 +40,15 @@ router.put(
     cancelBooking
 );
 
-// =========================
 // ADMIN ROUTES
-// =========================
-
 // Get All Bookings
 router.get(
     "/",
     authMiddleware,
     adminMiddleware,
     async (req, res) => {
-
         const Booking = require("../models/Booking");
-
         try {
-
             const bookings = await Booking.find()
                 .populate("movie")
                 .populate("theatre")
@@ -68,21 +58,16 @@ router.get(
                 .sort({
                     createdAt: -1
                 });
-
             res.json({
                 success: true,
                 bookings
             });
-
         } catch (error) {
-
             res.status(500).json({
                 success: false,
                 message: error.message
             });
-
         }
-
     }
 );
 

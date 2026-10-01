@@ -21,20 +21,27 @@ function TheatreSelection({ location, changeLocation }) {
 
     const [shows, setShows] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [selectedDate, setSelectedDate] = useState(getDateKey(new Date()));
+    const [selectedDate, setSelectedDate] = useState("");
 
     const dates = useMemo(() => {
         if (!movie?.availableFrom || !movie?.availableUntil) return [];
 
-        const start = new Date(movie.availableFrom);
-        const end = new Date(movie.availableUntil);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
 
-        start.setHours(0, 0, 0, 0);
-        end.setHours(0, 0, 0, 0);
+        const availableFrom = new Date(movie.availableFrom);
+        const availableUntil = new Date(movie.availableUntil);
+
+        availableFrom.setHours(0, 0, 0, 0);
+        availableUntil.setHours(0, 0, 0, 0);
+
+        const start = today > availableFrom ? today : availableFrom;
+
+        if (start > availableUntil) return [];
 
         const result = [];
 
-        while (start <= end) {
+        while (start <= availableUntil) {
             result.push({
                 value: getDateKey(start),
                 day: start.toLocaleDateString("en-US", { weekday: "short" }),
@@ -80,8 +87,14 @@ function TheatreSelection({ location, changeLocation }) {
     }
 
     const filteredShows = shows.filter(show => {
+        const showDate = getDateKey(show.date);
+        const availableFrom = getDateKey(movie.availableFrom);
+        const availableUntil = getDateKey(movie.availableUntil);
+
         return (
-            getDateKey(show.date) === selectedDate &&
+            showDate === selectedDate &&
+            showDate >= availableFrom &&
+            showDate <= availableUntil &&
             (!selectedLanguage || show.language === selectedLanguage)
         );
     });
@@ -103,10 +116,12 @@ function TheatreSelection({ location, changeLocation }) {
         groupedShows[theatreId].shows.push(show);
     });
 
-    const selectedDay = new Date(`${selectedDate}T00:00:00`).toLocaleDateString(
-        "en-US",
-        { weekday: "short" }
-    );
+    const selectedDay = selectedDate
+        ? new Date(`${selectedDate}T00:00:00`).toLocaleDateString(
+              "en-US",
+              { weekday: "short" }
+          )
+        : "";
 
     return (
         <>
@@ -123,11 +138,15 @@ function TheatreSelection({ location, changeLocation }) {
                     </p>
                 </div>
 
-                <DateSelector
-                    dates={dates}
-                    selectedDate={selectedDate}
-                    onDateChange={({ date }) => setSelectedDate(date)}
-                />
+                {dates.length > 0 ? (
+                    <DateSelector
+                        dates={dates}
+                        selectedDate={selectedDate}
+                        onDateChange={({ date }) => setSelectedDate(date)}
+                    />
+                ) : (
+                    <h2>No booking dates available.</h2>
+                )}
 
                 {Object.keys(groupedShows).length > 0 ? (
                     Object.values(groupedShows).map(({ theatre, shows }) => (
@@ -175,9 +194,9 @@ function TheatreSelection({ location, changeLocation }) {
                             </div>
                         </div>
                     ))
-                ) : (
+                ) : dates.length > 0 ? (
                     <h2>No shows available for the selected date.</h2>
-                )}
+                ) : null}
             </div>
         </>
     );

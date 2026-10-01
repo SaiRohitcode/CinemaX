@@ -63,15 +63,18 @@ const bookingSchema = new mongoose.Schema({
     },
 
     paymentMethod: {
-        type: String,
-        enum: [
-            "UPI",
-            "Card",
-            "Net Banking",
-            "Wallet"
-        ],
-        default: "UPI"
-    },
+    type: String,
+    enum: [
+        "UPI",
+        "Google Pay",
+        "PhonePe",
+        "Paytm",
+        "Card",
+        "Net Banking",
+        "Wallet"
+    ],
+    default: "UPI"
+},
 
     paymentStatus: {
         type: String,

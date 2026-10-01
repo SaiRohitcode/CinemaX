@@ -1,140 +1,108 @@
 import "./BookingHistory.css";
+import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
+import bookingService from "../../services/bookingService";
 
+function BookingHistory(){
+    const navigate=useNavigate();
+    const [bookings,setBookings]=useState([]);
+    const [loading,setLoading]=useState(true);
 
-function BookingHistory() {
+    useEffect(()=>{
+        const fetchBookings=async()=>{
+            try{
+                const response=await bookingService.getMyBookings();
+                setBookings(response.bookings||response||[]);
+            }catch(error){
+                console.error("Booking history error:",error);
+                setBookings([]);
+            }finally{
+                setLoading(false);
+            }
+        };
+        fetchBookings();
+    },[]);
 
-    const navigate = useNavigate();
-
-    let bookings = [];
-
-    try {
-        bookings =
-            JSON.parse(localStorage.getItem("bookings")) || [];
-    } catch {
-        bookings = [];
+    if(loading){
+        return(
+            <div className="booking-history">
+                <h1 className="history-title">Your Bookings</h1>
+                <h2>Loading Bookings...</h2>
+            </div>
+        );
     }
 
-    return (
-
+    return(
         <div className="booking-history">
-
-            <h1 className="history-title">
-                 Your Bookings
-            </h1>
-
-            {bookings.length === 0 ? (
-
+            <h1 className="history-title">Your Bookings</h1>
+            {bookings.length===0?(
                 <div className="empty-bookings">
-
                     <h2>No Bookings Yet</h2>
-
-                    <p>
-                        Book your favourite movie and it will appear here.
-                    </p>
-
-                    <button
-                        className="browse-btn"
-                        onClick={() => navigate("/")}
-                    >
+                    <p>Book your favourite movie and it will appear here.</p>
+                    <button className="browse-btn" onClick={()=>navigate("/")}>
                         Browse Movies
                     </button>
-
                 </div>
-
-            ) : (
-
+            ):(
                 <div className="booking-container">
+                    {bookings.map(booking=>{
+                        const movie=booking.movie||{};
+                        const theatre=booking.theatre||{};
+                        const show=booking.show||{};
 
-                    {bookings.map((booking) => {
-
-                        const movie = movies.find(
-                            (m) => m.id === booking.movieId
-                        );
-
-                        if (!movie) return null;
-
-                        return (
-
-                            <div
-                                className="booking-card"
-                                key={booking.bookingId}
-                            >
-
+                        return(
+                            <div className="booking-card" key={booking._id||booking.bookingId}>
                                 <img
-                                    src={movie.poster}
-                                    alt={movie.title}
+                                    src={movie.poster||""}
+                                    alt={movie.title||"Movie"}
                                     className="booking-poster"
                                 />
-
                                 <div className="booking-info">
-
-                                    <h2>{movie.title}</h2>
-
+                                    <h2>{movie.title||"Movie"}</h2>
                                     <div className="history-booking-details">
-
                                         <p>
                                             <strong>Booking ID</strong>
-                                            <span>{booking.bookingId}</span>
+                                            <span>{booking.bookingId||booking._id}</span>
                                         </p>
-
                                         <p>
                                             <strong>Theatre</strong>
-                                            <span>{booking.theatre}</span>
+                                            <span>{theatre.name||"N/A"}</span>
                                         </p>
-
                                         <p>
                                             <strong>Location</strong>
-                                            <span>{booking.city}</span>
+                                            <span>{theatre.city||"N/A"}</span>
                                         </p>
-
                                         <p>
                                             <strong>Date</strong>
-                                            <span>{booking.date}</span>
+                                            <span>{show.date?new Date(show.date).toLocaleDateString():"N/A"}</span>
                                         </p>
-
                                         <p>
                                             <strong>Show Time</strong>
-                                            <span>{booking.showTime}</span>
+                                            <span>{show.showTime||"N/A"}</span>
                                         </p>
-
                                         <p>
                                             <strong>Seats</strong>
-                                            <span>{booking.seats.join(", ")}</span>
+                                            <span>{Array.isArray(booking.seats)?booking.seats.join(", "):booking.seats||"N/A"}</span>
                                         </p>
-
                                         <p>
                                             <strong>Amount Paid</strong>
-                                            <span>₹{booking.totalPrice}</span>
+                                            <span>₹{booking.totalPrice||0}</span>
                                         </p>
-
                                     </div>
-
                                     <button
                                         className="ticket-btn"
-                                        onClick={() =>
-                                            navigate(`/ticket/${booking.bookingId}`)
-                                        }
+                                        onClick={()=>navigate(`/ticket/${booking._id}`)}
                                     >
                                         View Ticket
                                     </button>
-
                                 </div>
-
                             </div>
-
                         );
-
                     })}
-
                 </div>
-
             )}
-
         </div>
-
     );
-
 }
 
 export default BookingHistory;

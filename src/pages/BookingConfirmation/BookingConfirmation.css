@@ -1,161 +1,210 @@
 .confirmation-page{
     min-height:100vh;
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
-    padding:40px;
-    background:#ECEFF3;
+    padding:20px;
+    background:#080d17;
 }
-
-.ticket{
-    width:420px;
-    background:#fff;
-    border-radius:18px;
+.confirmation-page .ticket{
+    width:850px;
+    max-width:100%;
+    background:#fff!important;
+    border-radius:16px;
     overflow:hidden;
-    box-shadow:0 12px 30px rgba(0,0,0,.15);
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
 }
-
-.ticket-header{
-    padding:30px;
-    background:#E50914;
-    color:#fff;
+.confirmation-page .ticket-header{
+    padding:18px;
+    background:linear-gradient(135deg,#0f4c81,#2563eb)!important;
+    color:#fff!important;
     text-align:center;
 }
-
-.ticket-header h1{
-    margin-bottom:8px;
+.confirmation-page .ticket-header h1{
+    margin:0 0 5px;
+    font-size:25px;
 }
-
-.ticket-body{
-    padding:30px;
+.confirmation-page .ticket-header p{
+    margin:0;
+    font-size:13px;
+    color:#dbeafe!important;
 }
-
-.ticket-row{
+.confirmation-page .ticket-body{
+    padding:18px 22px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 20px;
+    background:#fff!important;
+}
+.confirmation-page .ticket-row{
     display:flex;
     justify-content:space-between;
-    margin-bottom:18px;
-    padding-bottom:10px;
-    border-bottom:1px dashed #ddd;
+    align-items:center;
+    min-height:38px;
+    padding:6px 8px;
+    background:#f5f7fa!important;
+    border-bottom:1px solid #e2e8f0!important;
+    border-left:0!important;
 }
-
-.ticket-row span{
-    color:#666;
+.confirmation-page .ticket-row span{
+    color:#64748b!important;
+    font-size:12px;
 }
-
-.ticket-row strong{
-    color:#111;
+.confirmation-page .ticket-row strong{
+    color:#111827!important;
+    font-size:13px;
+    text-align:right;
 }
-
-.qr-section{
-    padding:25px;
-    color:#111;
+.confirmation-page .ticket-row a{
+    color:#2563eb!important;
+    font-size:12px;
+    text-decoration:none;
+}
+.confirmation-page .total-row{
+    background:#eff6ff!important;
+    border:1px solid #bfdbfe!important;
+    border-radius:7px;
+}
+.confirmation-page .total-row strong{
+    color:#2563eb!important;
+    font-size:16px;
+}
+.confirmation-page .qr-section{
+    padding:10px;
     text-align:center;
-    border-top:2px dashed #ddd;
+    background:#f8fafc!important;
+    border-top:1px solid #dbeafe;
 }
-
-.qr-box{
-    width:170px;
-    height:170px;
+.confirmation-page .qr-box{
+    width:85px;
+    height:85px;
     margin:auto;
+    padding:4px;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:10px;
     background:#fff;
-    border:1px solid #ddd;
-    border-radius:10px;
+    border:1px solid #bfdbfe;
+    border-radius:7px;
 }
-
-.home-btn{
-    margin-top:30px;
-    padding:15px 35px;
-    background:#E50914;
-    color:#fff;
-    border:none;
-    border-radius:10px;
-    font-size:17px;
+.confirmation-page .qr-box svg{
+    width:100%!important;
+    height:100%!important;
+}
+.confirmation-page .qr-section p{
+    margin:3px 0 0;
+    font-size:10px;
+    color:#64748b!important;
+}
+.confirmation-page .ticket-footer{
+    padding:0 22px;
+}
+.confirmation-page .confirmation-buttons{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    padding:12px 18px 15px;
+    background:#fff!important;
+    border-top:1px solid #dbeafe;
+}
+.confirmation-page .confirmation-buttons button{
+    flex:1;
+    max-width:160px;
+    height:36px;
+    border:0;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:600;
     cursor:pointer;
-    transition:.3s;
 }
-
-.home-btn:hover{
-    background:#c40812;
+.confirmation-page .download-btn{
+    background:#2563eb!important;
+    color:#fff!important;
 }
-
-/* Tablet */
-@media (max-width:768px){
+.confirmation-page .download-btn:hover{
+    background:#1d4ed8!important;
+}
+.confirmation-page .print-btn,
+.confirmation-page .bookings-btn{
+    background:#eff6ff!important;
+    color:#174a7c!important;
+    border:1px solid #bfdbfe!important;
+}
+.confirmation-page .print-btn:hover,
+.confirmation-page .bookings-btn:hover{
+    background:#dbeafe!important;
+}
+.confirmation-page .home-btn{
+    background:#0f4c81!important;
+    color:#fff!important;
+}
+.confirmation-page .home-btn:hover{
+    background:#0b3b64!important;
+}
+.confirmation-page .status-success,
+.confirmation-page .status-confirmed{
+    color:#15803d!important;
+}
+@media(max-width:768px){
     .confirmation-page{
-        padding:30px;
-    }
-
-    .ticket{
-        width:100%;
-        max-width:420px;
-    }
-
-    .ticket-header{
-        padding:25px;
-    }
-
-    .ticket-body{
-        padding:25px;
-    }
-
-    .ticket-row{
-        font-size:15px;
-    }
-
-    .home-btn{
-        width:100%;
-        padding:14px;
-        font-size:16px;
-    }
-}
-
-/* Mobile */
-@media (max-width:480px){
-    .confirmation-page{
-        padding:20px;
-    }
-
-    .ticket{
-        width:100%;
-        border-radius:15px;
-    }
-
-    .ticket-header{
-        padding:20px;
-    }
-
-    .ticket-header h1{
-        font-size:24px;
-    }
-
-    .ticket-body{
-        padding:20px;
-    }
-
-    .ticket-row{
-        flex-direction:column;
-        gap:5px;
+        padding:12px;
         align-items:flex-start;
-        font-size:14px;
     }
-
-    .qr-section{
-        padding:20px;
+    .confirmation-page .ticket-body{
+        padding:12px;
+        gap:0 10px;
     }
-
-    .qr-box{
-        width:140px;
-        height:140px;
+    .confirmation-page .ticket-row{
+        min-height:35px;
+        padding:5px;
     }
-
-    .home-btn{
-        width:100%;
-        margin-top:20px;
-        padding:13px;
-        font-size:15px;
+    .confirmation-page .ticket-row span{
+        font-size:10px;
+    }
+    .confirmation-page .ticket-row strong{
+        font-size:11px;
+    }
+    .confirmation-page .confirmation-buttons{
+        gap:5px;
+        padding:10px;
+    }
+    .confirmation-page .confirmation-buttons button{
+        height:34px;
+        font-size:10px;
+        padding:0 5px;
+    }
+}
+@media(max-width:480px){
+    .confirmation-page{
+        padding:8px;
+    }
+    .confirmation-page .ticket-body{
+        grid-template-columns:1fr;
+        padding:10px;
+    }
+    .confirmation-page .ticket-header{
+        padding:15px;
+    }
+    .confirmation-page .ticket-header h1{
+        font-size:20px;
+    }
+    .confirmation-page .confirmation-buttons{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+    .confirmation-page .confirmation-buttons button{
+        max-width:none;
+    }
+}
+@media print{
+    .confirmation-page{
+        padding:0;
+        background:#fff!important;
+    }
+    .confirmation-page .ticket{
+        box-shadow:none;
+    }
+    .confirmation-page .confirmation-buttons{
+        display:none;
     }
 }

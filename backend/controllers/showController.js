@@ -2,30 +2,28 @@ const Show = require("../models/Show");
 const Booking = require("../models/Booking");
 
 const createShow = async (req, res) => {
-
     try {
-
         const {
             movie,
             theatre,
             screen,
-            date,
+            startDate,
+            endDate,
             language,
             format,
-            showTime,
-            pricing
+            showTimes
         } = req.body;
 
         if (
             !movie ||
             !theatre ||
             !screen ||
-            !date ||
+            !startDate ||
+            !endDate ||
             !language ||
             !format ||
-            !showTime ||
-            !pricing ||
-            pricing.length === 0
+            !showTimes ||
+            showTimes.length === 0
         ) {
             return res.status(400).json({
                 success: false,
@@ -33,30 +31,70 @@ const createShow = async (req, res) => {
             });
         }
 
-        const show = await Show.create(req.body);
+        if (endDate < startDate) {
+            return res.status(400).json({
+                success: false,
+                message: "End date must be after Start date."
+            });
+        }
+
+        const shows = [];
+        const currentDate = new Date(`${startDate}T00:00:00`);
+        const lastDate = new Date(`${endDate}T00:00:00`);
+
+        while (currentDate <= lastDate) {
+            for (const showTime of showTimes) {
+                const showDate = new Date(currentDate);
+
+                const existingShow = await Show.findOne({
+                    movie,
+                    theatre,
+                    screen,
+                    date: showDate,
+                    showTime
+                });
+
+                if (!existingShow) {
+                    shows.push({
+                        movie,
+                        theatre,
+                        screen,
+                        date: showDate,
+                        language,
+                        format,
+                        showTime,
+                        isActive: true
+                    });
+                }
+            }
+
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        if (shows.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: "All selected shows already exist."
+            });
+        }
+
+        const createdShows = await Show.insertMany(shows);
 
         res.status(201).json({
             success: true,
-            message: "Show created successfully.",
-            show
+            message: `${createdShows.length} shows created successfully.`,
+            shows: createdShows
         });
-
     } catch (error) {
-
         res.status(500).json({
             success: false,
             message: error.message
         });
-
     }
-
 };
 
-
 const getShows = async (req, res) => {
-
     try {
-
         const shows = await Show.find({ isActive: true })
             .populate("movie")
             .populate("theatre")
@@ -68,23 +106,16 @@ const getShows = async (req, res) => {
             count: shows.length,
             shows
         });
-
     } catch (error) {
-
         res.status(500).json({
             success: false,
             message: error.message
         });
-
     }
-
 };
 
-
 const getShow = async (req, res) => {
-
     try {
-
         const show = await Show.findById(req.params.id)
             .populate("movie")
             .populate("theatre")
@@ -101,22 +132,16 @@ const getShow = async (req, res) => {
             success: true,
             show
         });
-
     } catch (error) {
-
         res.status(500).json({
             success: false,
             message: error.message
         });
-
     }
-
 };
 
 const getShowsByMovie = async (req, res) => {
-
     try {
-
         const shows = await Show.find({
             movie: req.params.movieId,
             isActive: true
@@ -134,23 +159,16 @@ const getShowsByMovie = async (req, res) => {
             count: shows.length,
             shows
         });
-
     } catch (error) {
-
         res.status(500).json({
             success: false,
             message: error.message
         });
-
     }
-
 };
 
-// Get Seat Layout for a Show
 const getShowSeats = async (req, res) => {
-
     try {
-
         const show = await Show.findById(req.params.showId)
             .populate("movie")
             .populate("theatre")
@@ -178,22 +196,16 @@ const getShowSeats = async (req, res) => {
             screen: show.screen,
             bookedSeats
         });
-
     } catch (error) {
-
         res.status(500).json({
             success: false,
             message: error.message
         });
-
     }
-
 };
 
 const updateShow = async (req, res) => {
-
     try {
-
         const show = await Show.findById(req.params.id);
 
         if (!show) {
@@ -217,16 +229,12 @@ const updateShow = async (req, res) => {
             message: "Show updated successfully.",
             show: updatedShow
         });
-
     } catch (error) {
-
         res.status(500).json({
             success: false,
             message: error.message
         });
-
     }
-
 };
 
 const deleteShow = async (req, res) => {

@@ -14,39 +14,35 @@ function AddShow() {
     const [theatres, setTheatres] = useState([]);
     const [screens, setScreens] = useState([]);
     const [selectedScreen, setSelectedScreen] = useState(null);
+    const [selectedTimes, setSelectedTimes] = useState([]);
+    const [newTime, setNewTime] = useState("");
 
     const [formData, setFormData] = useState({
         movie: "",
         theatre: "",
         screen: "",
-        date: "",
+        startDate: "",
+        endDate: "",
         language: "",
         format: "2D",
-        showTime: "",
         pricing: []
     });
 
     useEffect(() => {
         const loadData = async () => {
             try {
-                const [movieData, theatreData, screenData] =
-                    await Promise.all([
-                        movieService.getMovies(),
-                        theatreService.getTheatres(),
-                        screenService.getScreens()
-                    ]);
-
+                const [movieData, theatreData, screenData] = await Promise.all([
+                    movieService.getMovies(),
+                    theatreService.getTheatres(),
+                    screenService.getScreens()
+                ]);
                 setMovies(movieData.movies || movieData);
                 setTheatres(theatreData.theatres || theatreData);
                 setScreens(screenData.screens || screenData);
             } catch (err) {
-                alert(
-                    err.response?.data?.message ||
-                    "Unable to fetch required data."
-                );
+                alert(err.response?.data?.message || "Unable to fetch required data.");
             }
         };
-
         loadData();
     }, []);
 
@@ -66,19 +62,15 @@ function AddShow() {
 
         if (name === "screen") {
             const screen = screens.find(s => s._id === value);
-
             setSelectedScreen(screen || null);
-
             setFormData({
                 ...formData,
                 screen: value,
-                pricing:
-                    screen?.sections?.map(section => ({
-                        section: section.name,
-                        price: Number(section.price) || 0
-                    })) || []
+                pricing: screen?.sections?.map(section => ({
+                    section: section.name,
+                    price: Number(section.price) || 0
+                })) || []
             });
-
             return;
         }
 
@@ -88,62 +80,68 @@ function AddShow() {
         });
     };
 
-    const handlePriceChange = (index, value) => {
-        const pricing = [...formData.pricing];
+    const addShowTime = () => {
+        if (!newTime) {
+            alert("Select a show time.");
+            return;
+        }
 
-        pricing[index] = {
-            ...pricing[index],
-            price: Number(value)
-        };
+        if (selectedTimes.includes(newTime)) {
+            alert("This show time is already added.");
+            return;
+        }
 
-        setFormData({
-            ...formData,
-            pricing
-        });
+        setSelectedTimes([...selectedTimes, newTime]);
+        setNewTime("");
+    };
+
+    const removeShowTime = time => {
+        setSelectedTimes(selectedTimes.filter(item => item !== time));
     };
 
     const availableScreens = screens.filter(screen => {
-        const theatreId =
-            screen.theatre?._id || screen.theatre;
-
+        const theatreId = screen.theatre?._id || screen.theatre;
         return theatreId === formData.theatre;
     });
 
     const handleSubmit = async e => {
         e.preventDefault();
 
+        if (formData.endDate < formData.startDate) {
+            alert("End date must be after Start date.");
+            return;
+        }
+
+        if (selectedTimes.length === 0) {
+            alert("Add at least one show time.");
+            return;
+        }
+
         try {
-            await showService.addShow(formData);
+            await showService.addShow({
+                ...formData,
+                showTimes: selectedTimes
+            });
+
+            alert("Shows added successfully.");
             navigate("/admin/shows");
         } catch (err) {
-            alert(
-                err.response?.data?.message ||
-                "Unable to add show."
-            );
+            alert(err.response?.data?.message || "Unable to add shows.");
         }
     };
 
     return (
         <AdminLayout>
             <div className="form-container">
-                <h2 className="form-title">Add Show</h2>
+                <h2 className="form-title">Add Shows</h2>
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Movie</label>
-                        <select
-                            name="movie"
-                            value={formData.movie}
-                            onChange={handleChange}
-                            required
-                        >
+                        <select name="movie" value={formData.movie} onChange={handleChange} required>
                             <option value="">Select Movie</option>
-
                             {movies.map(movie => (
-                                <option
-                                    key={movie._id}
-                                    value={movie._id}
-                                >
+                                <option key={movie._id} value={movie._id}>
                                     {movie.title}
                                 </option>
                             ))}
@@ -152,19 +150,10 @@ function AddShow() {
 
                     <div className="form-group">
                         <label>Theatre</label>
-                        <select
-                            name="theatre"
-                            value={formData.theatre}
-                            onChange={handleChange}
-                            required
-                        >
+                        <select name="theatre" value={formData.theatre} onChange={handleChange} required>
                             <option value="">Select Theatre</option>
-
                             {theatres.map(theatre => (
-                                <option
-                                    key={theatre._id}
-                                    value={theatre._id}
-                                >
+                                <option key={theatre._id} value={theatre._id}>
                                     {theatre.name}
                                 </option>
                             ))}
@@ -181,16 +170,10 @@ function AddShow() {
                             disabled={!formData.theatre}
                         >
                             <option value="">
-                                {formData.theatre
-                                    ? "Select Screen"
-                                    : "Select Theatre First"}
+                                {formData.theatre ? "Select Screen" : "Select Theatre First"}
                             </option>
-
                             {availableScreens.map(screen => (
-                                <option
-                                    key={screen._id}
-                                    value={screen._id}
-                                >
+                                <option key={screen._id} value={screen._id}>
                                     {screen.name}
                                 </option>
                             ))}
@@ -198,11 +181,22 @@ function AddShow() {
                     </div>
 
                     <div className="form-group">
-                        <label>Show Date</label>
+                        <label>Start Date</label>
                         <input
                             type="date"
-                            name="date"
-                            value={formData.date}
+                            name="startDate"
+                            value={formData.startDate}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label>End Date</label>
+                        <input
+                            type="date"
+                            name="endDate"
+                            value={formData.endDate}
                             onChange={handleChange}
                             required
                         />
@@ -219,70 +213,51 @@ function AddShow() {
                             required
                         />
                     </div>
-
-                    <div className="form-group">
-                        <label>Format</label>
-                        <select
-                            name="format"
-                            value={formData.format}
-                            onChange={handleChange}
-                            required
-                        >
-                            <option value="2D">2D</option>
-                            <option value="3D">3D</option>
-                            <option value="IMAX">IMAX</option>
-                            <option value="4DX">4DX</option>
-                            <option value="Dolby Atmos">
-                                Dolby Atmos
-                            </option>
-                        </select>
-                    </div>
-
                     <div className="form-group">
                         <label>Show Time</label>
-                        <input
-                            type="time"
-                            name="showTime"
-                            value={formData.showTime}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div style={{ display: "flex", gap: "10px" }}>
+                            <input
+                                type="time"
+                                value={newTime}
+                                onChange={e => setNewTime(e.target.value)}
+                            />
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={addShowTime}
+                            >
+                                Add Time
+                            </button>
+                        </div>
                     </div>
 
-                    {selectedScreen?.sections?.map(
-                        (section, index) => (
-                            <div
-                                className="form-group"
-                                key={section.name}
-                            >
-                                <label>
-                                    {section.name} Price (₹)
-                                </label>
-
-                                <input
-                                    type="number"
-                                    min="0"
-                                    value={
-                                        formData.pricing[index]
-                                            ?.price ?? ""
-                                    }
-                                    onChange={e =>
-                                        handlePriceChange(
-                                            index,
-                                            e.target.value
-                                        )
-                                    }
-                                    required
-                                />
-                            </div>
-                        )
+                    {selectedTimes.length > 0 && (
+                        <div className="form-group">
+                            <label>Selected Show Times</label>
+                            {selectedTimes.map(time => (
+                                <div
+                                    key={time}
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                        marginBottom: "8px"
+                                    }}
+                                >
+                                    <span>{time}</span>
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger"
+                                        onClick={() => removeShowTime(time)}
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     )}
-
-                    <button
-                        type="submit"
-                        className="btn btn-primary"
-                    >
-                        Add Show
+                    <button type="submit" className="btn btn-primary">
+                        Add Shows
                     </button>
                 </form>
             </div>
